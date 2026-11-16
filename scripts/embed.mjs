@@ -16,7 +16,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "data/embeddings.json");
 const MODEL = "gemini-embedding-001";
 const DIM = 768;
-const BATCH = 50;
+const BATCH = Number(process.env.EMBED_BATCH ?? 20);
 
 for (const f of [".env.local", ".env"]) {
   const p = join(ROOT, f);
@@ -97,8 +97,9 @@ async function embedBatch(batch, attempt = 0) {
   if (res.status === 429) {
     const body = await res.text();
     // Kuota harian habis: berhenti, lanjutkan besok.
-    if (/PerDay|per day|daily/i.test(body) || attempt >= 6) throw new QuotaError(body.slice(0, 160));
-    const wait = 15000 * (attempt + 1);
+    if (/PerDay|per day|daily/i.test(body) || attempt >= 10) throw new QuotaError(body.slice(0, 160));
+    if (attempt === 0) console.log("  429:", (body.match(/"quotaId": "[^"]+"/g) ?? []).join(" "));
+    const wait = Math.min(90000, 20000 * (attempt + 1));
     console.log(`  batas per menit, menunggu ${wait / 1000} detik...`);
     await sleep(wait);
     return embedBatch(batch, attempt + 1);
@@ -115,7 +116,7 @@ function normalize(v) {
 
 try {
   for (let i = 0; i < todo.length; i += BATCH) {
-    if (i) await sleep(4000);
+    if (i) await sleep(Number(process.env.EMBED_PAUSE_MS ?? 15000));
     const batch = todo.slice(i, i + BATCH);
     const vecs = await embedBatch(batch);
     batch.forEach((c, j) => (store.byHash[c.h] = vecs[j]));

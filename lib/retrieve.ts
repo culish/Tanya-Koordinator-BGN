@@ -20,7 +20,9 @@ const CHUNKS = chunksJson as Chunk[];
 const EMB = embeddingsJson as { model: string; dim: number; byHash?: Record<string, number[]> };
 // Vektor per chunk (null jika chunk itu belum punya embedding).
 const VECTORS: (number[] | null)[] = CHUNKS.map((c) => EMB.byHash?.[c.h] ?? null);
-const HAS_VECTORS = VECTORS.some(Boolean);
+// Pencarian makna baru dipakai jika hampir semua chunk sudah ber-embedding,
+// supaya chunk yang sudah punya vektor tidak lebih diunggulkan dari yang belum.
+const HAS_VECTORS = VECTORS.filter(Boolean).length >= CHUNKS.length * 0.9;
 
 // Kata umum Bahasa Indonesia yang tidak membantu pencarian.
 const STOP = new Set(
