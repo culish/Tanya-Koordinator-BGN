@@ -39,10 +39,12 @@ function inline(text: string, cite: (n: number) => ReactNode, keyBase: string): 
   return out;
 }
 
+type Item = { text: string; sub: { type: "ul" | "ol"; items: string[] } | null };
+
 function renderBlocks(text: string, cite: (n: number) => ReactNode) {
   const lines = text.replace(/\r/g, "").split("\n");
   const blocks: ReactNode[] = [];
-  let list: { type: "ul" | "ol"; items: string[] } | null = null;
+  let list: { type: "ul" | "ol"; start: number; items: Item[] } | null = null;
   let para: string[] = [];
   const flushPara = () => {
     if (para.length) {
@@ -54,19 +56,38 @@ function renderBlocks(text: string, cite: (n: number) => ReactNode) {
   const flushList = () => {
     if (list) {
       const key = `l${blocks.length}`;
-      const items = list.items.map((it, i) => <li key={i}>{inline(it, cite, `${key}-${i}`)}</li>);
-      blocks.push(list.type === "ul" ? <ul key={key}>{items}</ul> : <ol key={key}>{items}</ol>);
+      const items = list.items.map((it, i) => {
+        const k = `${key}-${i}`;
+        const sub = it.sub
+          ? it.sub.items.map((x, j) => <li key={j}>{inline(x, cite, `${k}-${j}`)}</li>)
+          : null;
+        return (
+          <li key={i}>
+            {inline(it.text, cite, k)}
+            {sub && (it.sub!.type === "ul" ? <ul>{sub}</ul> : <ol>{sub}</ol>)}
+          </li>
+        );
+      });
+      blocks.push(
+        list.type === "ul" ? (
+          <ul key={key}>{items}</ul>
+        ) : (
+          <ol key={key} start={list.start}>
+            {items}
+          </ol>
+        ),
+      );
     }
     list = null;
   };
   for (const raw of lines) {
     const line = raw.trim();
+    const indented = /^\s{2,}/.test(raw);
     const ul = line.match(/^[-*•]\s+(.*)/);
-    const ol = line.match(/^\d+[.)]\s+(.*)/);
+    const ol = line.match(/^(\d+)[.)]\s+(.*)/);
     const h = line.match(/^#{1,4}\s+(.*)/);
     if (!line) {
       flushPara();
-      flushList();
     } else if (h) {
       flushPara();
       flushList();
@@ -74,11 +95,21 @@ function renderBlocks(text: string, cite: (n: number) => ReactNode) {
     } else if (ul || ol) {
       flushPara();
       const type = ul ? "ul" : "ol";
-      if (list && list.type !== type) flushList();
-      list ??= { type, items: [] };
-      list.items.push((ul ?? ol)![1]);
-    } else if (list && /^\s{2,}/.test(raw)) {
-      list.items[list.items.length - 1] += " " + line;
+      const body = ul ? ul[1] : ol![2];
+      const parent = list?.items[list.items.length - 1];
+      if (list && parent && (indented || (list.type === "ol" && type === "ul"))) {
+        // Sub-poin di bawah butir sebelumnya.
+        parent.sub ??= { type, items: [] };
+        parent.sub.items.push(body);
+      } else {
+        if (list && list.type !== type) flushList();
+        list ??= { type, start: ol ? Number(ol[1]) : 1, items: [] };
+        list.items.push({ text: body, sub: null });
+      }
+    } else if (list && indented) {
+      const it = list.items[list.items.length - 1];
+      if (it.sub) it.sub.items[it.sub.items.length - 1] += " " + line;
+      else it.text += " " + line;
     } else {
       flushList();
       para.push(line);

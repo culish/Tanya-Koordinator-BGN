@@ -20,6 +20,9 @@ function limited(ip: string) {
   return list.length > LIMIT;
 }
 
+const DEFAULT_MODELS = "gemini-flash-lite-latest,gemini-3.5-flash-lite,gemini-3.5-flash";
+const FIRST_TOKEN_TIMEOUT = 20_000;
+
 const json = (status: number, message: string) =>
   Response.json({ error: message }, { status });
 
@@ -70,8 +73,13 @@ export async function POST(req: Request) {
     };
   });
 
-  const ai = new GoogleGenAI({ apiKey });
-  const model = process.env.GEMINI_MODEL || "gemini-flash-latest";
+  const ai = new GoogleGenAI({ apiKey, apiVersion: "v1beta" });
+  // Beberapa model dicoba berurutan: jika satu sedang penuh (503/429) atau lambat,
+  // otomatis pindah ke model berikutnya.
+  const models = (process.env.GEMINI_MODEL || DEFAULT_MODELS)
+    .split(",")
+    .map((m) => m.trim())
+    .filter(Boolean);
 
   const history = messages.slice(0, -1).map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
@@ -95,24 +103,49 @@ export async function POST(req: Request) {
     async start(controller) {
       const send = (obj: unknown) => controller.enqueue(encoder.encode(JSON.stringify(obj) + "\n"));
       send({ type: "sources", sources });
+      let lastErr = "";
       try {
-        const res = await ai.models.generateContentStream({
-          model,
-          contents,
-          config: {
-            systemInstruction: SYSTEM_PROMPT,
-            temperature: 0.1,
-            maxOutputTokens: 4096,
-          },
-        });
-        for await (const part of res) {
-          const text = part.text;
-          if (text) send({ type: "delta", text });
+        for (const model of models) {
+          let started = false;
+          const abort = new AbortController();
+          const timer = setTimeout(() => abort.abort(), FIRST_TOKEN_TIMEOUT);
+          try {
+            const res = await ai.models.generateContentStream({
+              model,
+              contents,
+              config: {
+                systemInstruction: SYSTEM_PROMPT,
+                temperature: 0.1,
+                maxOutputTokens: 4096,
+                abortSignal: abort.signal,
+              },
+            });
+            for await (const part of res) {
+              const text = part.text;
+              if (!text) continue;
+              if (!started) {
+                started = true;
+                clearTimeout(timer);
+              }
+              send({ type: "delta", text });
+            }
+            clearTimeout(timer);
+            if (started) {
+              send({ type: "done" });
+              return;
+            }
+            lastErr = `${model}: jawaban kosong`;
+          } catch (err) {
+            clearTimeout(timer);
+            lastErr = `${model}: ${err instanceof Error ? err.message : String(err)}`;
+            console.error("Gemini error:", lastErr.slice(0, 300));
+            // Jika jawaban sudah separuh terkirim, jangan ulang dengan model lain.
+            if (started) throw err;
+          }
         }
-        send({ type: "done" });
+        throw new Error(lastErr);
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
-        console.error("Gemini error:", msg);
         send({
           type: "error",
           message: /429|quota|RESOURCE_EXHAUSTED/i.test(msg)

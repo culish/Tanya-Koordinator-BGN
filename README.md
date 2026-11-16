@@ -30,7 +30,7 @@ Selesai. Setiap kali ada perubahan yang di-push ke GitHub, Vercel otomatis deplo
 ### Pengaturan opsional (Environment Variables)
 | Nama | Fungsi | Default |
 |---|---|---|
-| `GEMINI_MODEL` | Model chat Gemini | `gemini-flash-latest` |
+| `GEMINI_MODEL` | Model chat Gemini, boleh beberapa dipisah koma (dicoba berurutan jika ada yang penuh) | `gemini-flash-lite-latest,gemini-3.5-flash-lite,gemini-3.5-flash` |
 | `RATE_LIMIT` | Maksimal pertanyaan per IP per 10 menit | `30` |
 
 ## Menambah atau memperbarui dokumen

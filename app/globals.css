@@ -114,6 +114,8 @@ button { font: inherit; cursor: pointer; }
 .a-text p { margin: 0 0 10px; }
 .a-text h4 { margin: 14px 0 6px; font-size: 15px; color: var(--navy-900); }
 .a-text ul, .a-text ol { margin: 0 0 10px; padding-left: 22px; }
+.a-text li > ul, .a-text li > ol { margin: 6px 0 4px; padding-left: 18px; }
+.a-text li > ul { list-style: disc; }
 .a-text li { margin-bottom: 4px; }
 .a-text li::marker { color: var(--navy-700); font-weight: 700; }
 .a-text strong { color: var(--ink); }

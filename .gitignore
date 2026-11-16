@@ -8,7 +8,6 @@ out/
 next-env.d.ts
 # PDF sumber disimpan di Google Drive, bukan di repo
 docs/*.pdf
-# Dibangun otomatis saat build
+# Dibangun otomatis saat build (embeddings.json di-commit agar build tidak memanggil API ulang)
 data/chunks.json
-data/embeddings.json
 __pycache__/
