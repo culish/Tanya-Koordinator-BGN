@@ -1,0 +1,91 @@
+# Tanya Koordinator BGN
+
+Layanan tanya jawab seputar Surat Edaran (SE), Keputusan, dan Petunjuk Teknis Program Makan Bergizi Gratis. Jawaban disusun **hanya** dari dokumen yang terdaftar, setiap jawaban menyebutkan dokumen dan halamannya, dan jika jawabannya tidak ada di dokumen, chatbot akan mengatakannya, bukan menebak.
+
+- **Aplikasi:** Next.js, siap deploy di Vercel (paket gratis cukup)
+- **AI:** Google Gemini (paket gratis), untuk jawaban dan pencarian makna
+- **Data:** teks dokumen dari folder Google Drive, disimpan di `data/corpus/`. Tidak perlu database.
+
+## Cara kerja singkat
+
+1. Teks setiap PDF diekstrak (termasuk OCR untuk PDF hasil scan) ke `data/corpus/<slug>.md`, dengan penanda halaman.
+2. Saat build, teks dipotong menjadi ±260 bagian kecil (`npm run index`). Jika `GEMINI_API_KEY` tersedia, setiap bagian juga diberi embedding agar pencarian memahami makna, bukan hanya kata kunci.
+3. Saat pengguna bertanya, 7 bagian paling relevan dikirim ke Gemini bersama aturan ketat: hanya boleh menjawab dari kutipan dan wajib memberi nomor rujukan.
+
+## Deploy ke Vercel (sekali saja, ±10 menit)
+
+### 1. Buat kunci API Gemini (gratis)
+1. Buka https://aistudio.google.com/apikey dan login dengan akun Google.
+2. Klik **Create API key**, lalu salin kuncinya (diawali `AIza...`).
+
+### 2. Import repo ke Vercel
+1. Buka https://vercel.com/new dan login dengan akun GitHub.
+2. Pilih repo **culish/Tanya-Koordinator-BGN**, lalu klik **Import**.
+3. Buka bagian **Environment Variables** dan tambahkan:
+   - Name: `GEMINI_API_KEY`, Value: kunci dari langkah 1
+4. Klik **Deploy**. Setelah selesai, Vercel memberi alamat seperti `tanya-koordinator-bgn.vercel.app`.
+
+Selesai. Setiap kali ada perubahan yang di-push ke GitHub, Vercel otomatis deploy ulang.
+
+### Pengaturan opsional (Environment Variables)
+| Nama | Fungsi | Default |
+|---|---|---|
+| `GEMINI_MODEL` | Model chat Gemini | `gemini-flash-latest` |
+| `RATE_LIMIT` | Maksimal pertanyaan per IP per 10 menit | `30` |
+
+## Menambah atau memperbarui dokumen
+
+1. Unduh PDF dari Google Drive, simpan ke folder `docs/` dengan nama pendek, misalnya `docs/se-20-2026.pdf`.
+2. Tambahkan datanya ke `data/sources.json` (slug harus sama dengan nama file):
+   ```json
+   {
+     "slug": "se-20-2026",
+     "jenis": "Surat Edaran Kepala BGN",
+     "nomor": "20 Tahun 2026",
+     "judul": "Judul lengkap surat edaran",
+     "singkat": "SE 20/2026 Topik",
+     "driveId": "ID file Google Drive (bagian setelah /file/d/ di tautannya)"
+   }
+   ```
+3. Ekstrak teksnya (perlu Python 3):
+   ```bash
+   pip install pypdf pypdfium2 rapidocr-onnxruntime numpy
+   python scripts/extract.py docs/se-20-2026.pdf
+   ```
+4. Periksa sekilas `data/corpus/se-20-2026.md`, lalu commit dan push. Vercel akan membangun ulang indeks secara otomatis.
+
+File PDF di `docs/` tidak ikut di-commit, hanya teksnya.
+
+## Menjalankan di komputer sendiri
+
+```bash
+npm install
+cp .env.example .env.local   # isi GEMINI_API_KEY
+npm run index                # bangun indeks + embedding
+npm run dev                  # buka http://localhost:3000
+```
+
+Cek kualitas pencarian tanpa memanggil model chat:
+```bash
+npm run test:retrieval -- "apakah MBG tetap dibagikan saat hari Sabtu?"
+```
+
+## Catatan dokumen
+
+- **SK Nomor 63551 Tahun 2026** (perubahan juknis pembiayaan SPPG aglomerasi, 142 halaman hasil scan) belum dimasukkan karena filenya 43 MB dan tidak bisa diunduh otomatis. Ikuti langkah "Menambah dokumen" di atas untuk memasukkannya.
+- **Juknis 401.1 Tahun 2025** baru terbaca sampai sekitar halaman 80 (bagian 4.8 Mekanisme Pencairan). Halaman sesudahnya dan lampiran bisa ditambahkan dengan langkah yang sama.
+- Teks dari PDF hasil scan dibaca dengan OCR, sehingga beberapa judul berhuruf tebal bisa kehilangan spasi. Isi pasal dan angka sudah diperiksa terbaca dengan baik.
+
+## Struktur
+
+```
+app/                 halaman dan API /api/chat
+components/          komponen chat dan tampilan jawaban
+lib/retrieve.ts      pencarian (BM25 + embedding Gemini)
+lib/prompt.ts        aturan untuk model AI
+data/sources.json    daftar dokumen
+data/corpus/         teks hasil ekstraksi tiap dokumen
+scripts/             ekstraksi PDF, pembangunan indeks, embedding
+```
+
+> Alat bantu rujukan, bukan kanal resmi Badan Gizi Nasional. Jawaban dibuat otomatis dan dapat keliru; selalu periksa naskah aslinya.

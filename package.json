@@ -1,0 +1,32 @@
+{
+  "name": "tanya-koordinator-bgn",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "index": "node scripts/build-index.mjs && node scripts/embed.mjs",
+    "predev": "node scripts/build-index.mjs",
+    "dev": "next dev",
+    "prebuild": "npm run index",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test:retrieval": "tsx scripts/test-retrieval.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@google/genai": "^3.3.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "5.9"
+  }
+}
