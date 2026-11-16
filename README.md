@@ -25,6 +25,8 @@ Layanan tanya jawab seputar Surat Edaran (SE), Keputusan, dan Petunjuk Teknis Pr
    - Name: `GEMINI_API_KEY`, Value: kunci dari langkah 1
 4. Klik **Deploy**. Setelah selesai, Vercel memberi alamat seperti `tanya-koordinator-bgn.vercel.app`.
 
+Jika proyek sudah terlanjur di-deploy tanpa kunci: buka **Settings → Environments → Production**, tambahkan `GEMINI_API_KEY` di bagian **Environment Variables**, lalu **deploy ulang** (tab Deployments → ⋯ → Redeploy). Variabel baru hanya terbaca oleh deployment yang dibuat setelahnya.
+
 Selesai. Setiap kali ada perubahan yang di-push ke GitHub, Vercel otomatis deploy ulang.
 
 ### Pengaturan opsional (Environment Variables)
