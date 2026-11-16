@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { retrieve } from "@/lib/retrieve";
 import { SYSTEM_PROMPT, buildContext } from "@/lib/prompt";
-import { SOURCE_BY_SLUG, driveUrl, pageLabel } from "@/lib/sources";
+import { SOURCE_BY_SLUG, docUrl, pageLabel } from "@/lib/sources";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       judul: s.judul,
       singkat: s.singkat,
       halaman: pageLabel(c.pageStart, c.pageEnd),
-      url: driveUrl(s),
+      url: docUrl(s),
       kutipan: c.text.length > 420 ? `${c.text.slice(0, 420).trimEnd()}…` : c.text,
     };
   });

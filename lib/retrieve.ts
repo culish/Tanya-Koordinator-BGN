@@ -13,11 +13,14 @@ export type Chunk = {
   pageStart: number | null;
   pageEnd: number | null;
   text: string;
+  h: string;
 };
 
 const CHUNKS = chunksJson as Chunk[];
-const EMB = embeddingsJson as { model: string; dim: number; vectors: number[][] };
-const HAS_VECTORS = EMB.vectors.length === CHUNKS.length && CHUNKS.length > 0;
+const EMB = embeddingsJson as { model: string; dim: number; byHash?: Record<string, number[]> };
+// Vektor per chunk (null jika chunk itu belum punya embedding).
+const VECTORS: (number[] | null)[] = CHUNKS.map((c) => EMB.byHash?.[c.h] ?? null);
+const HAS_VECTORS = VECTORS.some(Boolean);
 
 // Kata umum Bahasa Indonesia yang tidak membantu pencarian.
 const STOP = new Set(
@@ -169,7 +172,7 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
   if (HAS_VECTORS && opts.apiKey) {
     const qv = await embedQuery(query, opts.apiKey);
     if (qv) {
-      const sims = EMB.vectors.map((v) => v.reduce((s, x, j) => s + x * qv[j], 0));
+      const sims = VECTORS.map((v) => (v ? v.reduce((s, x, j) => s + x * qv[j], 0) : 0));
       if (hint) CHUNKS.forEach((c, i) => c.slug === hint && (sims[i] += 0.05));
       rankings.push(rank(sims.map((s) => (s > 0.45 ? s : 0))).slice(0, 30));
     }
@@ -192,4 +195,7 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
   return { chunks: picked, semantic: rankings.length > 1 };
 }
 
-export const INDEX_INFO = { chunks: CHUNKS.length, semantic: HAS_VECTORS };
+export const INDEX_INFO = {
+  chunks: CHUNKS.length,
+  withVectors: VECTORS.filter(Boolean).length,
+};

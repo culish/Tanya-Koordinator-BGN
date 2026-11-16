@@ -1,5 +1,5 @@
 import Chat from "@/components/Chat";
-import { SOURCES, driveUrl } from "@/lib/sources";
+import { SOURCES, docUrl } from "@/lib/sources";
 
 const UPDATED = "16 November 2026";
 
@@ -16,7 +16,11 @@ function Emblem() {
 
 export default function Home() {
   const grouped = SOURCES.reduce<Record<string, typeof SOURCES>>((acc, s) => {
-    const key = s.jenis.startsWith("Surat Edaran") ? "Surat Edaran" : "Keputusan & Petunjuk Teknis";
+    const key = s.jenis.startsWith("Surat Edaran")
+      ? "Surat Edaran"
+      : /^(juknis|pedoman)/.test(s.slug)
+        ? "Petunjuk Teknis & Pedoman"
+        : "Keputusan";
     (acc[key] ??= []).push(s);
     return acc;
   }, {});
@@ -75,9 +79,11 @@ export default function Home() {
                 <ol className="doclist">
                   {list.map((s) => (
                     <li key={s.slug}>
-                      <a href={driveUrl(s)} target="_blank" rel="noopener noreferrer">
+                      <a href={docUrl(s)} target="_blank" rel="noopener noreferrer">
                         <span className="doc-no">
-                          {s.jenis.replace(" Kepala BGN", "")} No. {s.nomor}
+                          {s.nomor.startsWith("Tahun")
+                            ? `${s.jenis} ${s.nomor.replace("Tahun ", "")}`
+                            : `${s.jenis.replace(" Kepala BGN", "")} No. ${s.nomor}`}
                         </span>
                         <span className="doc-title">{s.judul}</span>
                       </a>

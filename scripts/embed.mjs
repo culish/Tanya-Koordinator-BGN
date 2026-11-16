@@ -1,20 +1,23 @@
 // Membuat embedding (vektor makna) untuk setiap chunk memakai Gemini, lalu
-// menyimpannya ke data/embeddings.json. Dipakai untuk pencarian semantik.
+// menyimpannya ke data/embeddings.json, dikelompokkan per sidik jari isi chunk.
 //
-// Jika GEMINI_API_KEY tidak ada atau panggilan gagal, file tetap dibuat
-// (kosong) dan aplikasi otomatis memakai pencarian kata kunci saja,
-// jadi build tidak pernah gagal karena langkah ini.
+// - Bertahap: chunk yang sudah punya embedding tidak dihitung ulang, dan hasil
+//   disimpan setelah setiap batch. Jika kuota harian Gemini habis, jalankan
+//   lagi besok dan proses akan melanjutkan dari posisi terakhir.
+// - Chunk yang belum punya embedding tetap bisa ditemukan lewat pencarian
+//   kata kunci, jadi aplikasi selalu berfungsi.
+// - Di Vercel langkah ini dilewati (agar build tidak menghabiskan kuota),
+//   kecuali EMBED_ON_BUILD=1.
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createHash } from "node:crypto";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "data/embeddings.json");
 const MODEL = "gemini-embedding-001";
 const DIM = 768;
+const BATCH = 50;
 
-// Muat .env.local / .env untuk pemakaian lokal.
 for (const f of [".env.local", ".env"]) {
   const p = join(ROOT, f);
   if (!existsSync(p)) continue;
@@ -24,35 +27,55 @@ for (const f of [".env.local", ".env"]) {
   }
 }
 
+let store = { model: MODEL, dim: DIM, byHash: {} };
+if (existsSync(OUT)) {
+  try {
+    const prev = JSON.parse(readFileSync(OUT, "utf8"));
+    if (prev.model === MODEL && prev.dim === DIM && prev.byHash) store = prev;
+  } catch {}
+}
+const save = () => writeFileSync(OUT, JSON.stringify(store));
+
 const chunks = JSON.parse(readFileSync(join(ROOT, "data/chunks.json"), "utf8"));
 const sources = Object.fromEntries(
   JSON.parse(readFileSync(join(ROOT, "data/sources.json"), "utf8")).map((s) => [s.slug, s]),
 );
-const hash = createHash("sha256")
-  .update(MODEL + DIM + chunks.map((c) => c.id + c.text).join("\n"))
-  .digest("hex")
-  .slice(0, 16);
 
-const empty = () => writeFileSync(OUT, JSON.stringify({ model: MODEL, dim: DIM, hash: null, vectors: [] }));
+// Buang embedding milik chunk yang sudah tidak ada.
+const live = new Set(chunks.map((c) => c.h));
+for (const h of Object.keys(store.byHash)) if (!live.has(h)) delete store.byHash[h];
 
-if (existsSync(OUT)) {
-  try {
-    const prev = JSON.parse(readFileSync(OUT, "utf8"));
-    if (prev.hash === hash && prev.vectors?.length === chunks.length) {
-      console.log("Embedding sudah terbaru, dilewati.");
-      process.exit(0);
-    }
-  } catch {}
+const todo = [];
+const seen = new Set();
+for (const c of chunks) {
+  if (store.byHash[c.h] || seen.has(c.h)) continue;
+  seen.add(c.h);
+  todo.push(c);
 }
+const total = live.size;
+const report = () =>
+  console.log(`Embedding: ${Object.keys(store.byHash).length}/${total} chunk sudah punya vektor.`);
 
+if (!todo.length) {
+  save();
+  report();
+  process.exit(0);
+}
+if (process.env.VERCEL && process.env.EMBED_ON_BUILD !== "1") {
+  save();
+  console.log(`Build Vercel: ${todo.length} chunk belum ber-embedding, dilewati (pakai pencarian kata kunci).`);
+  process.exit(0);
+}
 const key = process.env.GEMINI_API_KEY;
 if (!key) {
-  console.warn("! GEMINI_API_KEY belum diisi: embedding dilewati, aplikasi memakai pencarian kata kunci.");
-  empty();
+  save();
+  console.warn("! GEMINI_API_KEY belum diisi: embedding dilewati.");
+  report();
   process.exit(0);
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+class QuotaError extends Error {}
 
 async function embedBatch(batch, attempt = 0) {
   const res = await fetch(
@@ -71,31 +94,40 @@ async function embedBatch(batch, attempt = 0) {
       }),
     },
   );
-  if (res.status === 429 && attempt < 5) {
+  if (res.status === 429) {
+    const body = await res.text();
+    // Kuota harian habis: berhenti, lanjutkan besok.
+    if (/PerDay|per day|daily/i.test(body) || attempt >= 6) throw new QuotaError(body.slice(0, 160));
     const wait = 15000 * (attempt + 1);
-    console.log(`  kena batas kuota, menunggu ${wait / 1000} detik...`);
+    console.log(`  batas per menit, menunggu ${wait / 1000} detik...`);
     await sleep(wait);
     return embedBatch(batch, attempt + 1);
   }
-  if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+  if (!res.ok) throw new Error(`${res.status} ${(await res.text()).slice(0, 200)}`);
   const json = await res.json();
   return json.embeddings.map((e) => normalize(e.values));
 }
 
 function normalize(v) {
   const n = Math.hypot(...v) || 1;
-  return v.map((x) => Math.round((x / n) * 1e4) / 1e4);
+  return v.map((x) => Math.round((x / n) * 1e3) / 1e3);
 }
 
 try {
-  const vectors = [];
-  for (let i = 0; i < chunks.length; i += 50) {
-    vectors.push(...(await embedBatch(chunks.slice(i, i + 50))));
-    console.log(`  embedding ${Math.min(i + 50, chunks.length)}/${chunks.length}`);
+  for (let i = 0; i < todo.length; i += BATCH) {
+    if (i) await sleep(4000);
+    const batch = todo.slice(i, i + BATCH);
+    const vecs = await embedBatch(batch);
+    batch.forEach((c, j) => (store.byHash[c.h] = vecs[j]));
+    save();
+    console.log(`  ${Math.min(i + BATCH, todo.length)}/${todo.length} chunk baru`);
   }
-  writeFileSync(OUT, JSON.stringify({ model: MODEL, dim: DIM, hash, vectors }));
-  console.log(`Embedding selesai: ${vectors.length} vektor.`);
 } catch (err) {
-  console.warn(`! Embedding gagal (${err.message.slice(0, 200)}). Aplikasi memakai pencarian kata kunci.`);
-  empty();
+  save();
+  console.warn(
+    err instanceof QuotaError
+      ? "! Kuota embedding Gemini habis untuk hari ini. Jalankan `npm run index` lagi besok untuk melanjutkan."
+      : `! Embedding berhenti: ${err.message}`,
+  );
 }
+report();

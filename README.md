@@ -9,7 +9,7 @@ Layanan tanya jawab seputar Surat Edaran (SE), Keputusan, dan Petunjuk Teknis Pr
 ## Cara kerja singkat
 
 1. Teks setiap PDF diekstrak (termasuk OCR untuk PDF hasil scan) ke `data/corpus/<slug>.md`, dengan penanda halaman.
-2. Saat build, teks dipotong menjadi ±260 bagian kecil (`npm run index`). Jika `GEMINI_API_KEY` tersedia, setiap bagian juga diberi embedding agar pencarian memahami makna, bukan hanya kata kunci.
+2. Saat build, teks dipotong menjadi ±1.600 bagian kecil. Embedding (agar pencarian memahami makna, bukan hanya kata kunci) dibuat dengan `npm run index` di komputer lokal dan disimpan di `data/embeddings.json`.
 3. Saat pengguna bertanya, 7 bagian paling relevan dikirim ke Gemini bersama aturan ketat: hanya boleh menjawab dari kutipan dan wajib memberi nomor rujukan.
 
 ## Deploy ke Vercel (sekali saja, ±10 menit)
@@ -75,7 +75,8 @@ npm run test:retrieval -- "apakah MBG tetap dibagikan saat hari Sabtu?"
 ## Catatan dokumen
 
 - **SK Nomor 63551 Tahun 2026** (perubahan juknis pembiayaan SPPG aglomerasi, 142 halaman hasil scan) belum dimasukkan karena filenya 43 MB dan tidak bisa diunduh otomatis. Ikuti langkah "Menambah dokumen" di atas untuk memasukkannya.
-- **Juknis 401.1 Tahun 2025** baru terbaca sampai sekitar halaman 80 (bagian 4.8 Mekanisme Pencairan). Halaman sesudahnya dan lampiran bisa ditambahkan dengan langkah yang sama.
+- Juknis dan pedoman dari https://www.bgn.go.id/juknis (8 dokumen, termasuk Juknis 401.1 lengkap 286 halaman) sudah dimasukkan.
+- **Embedding bertahap:** kuota embedding gratis Gemini terbatas per hari. `npm run index` menyimpan progres dan melanjutkan dari posisi terakhir, jadi cukup dijalankan ulang keesokan harinya. Chunk yang belum punya embedding tetap ditemukan lewat pencarian kata kunci. Build di Vercel tidak menghitung embedding (agar tidak menghabiskan kuota), kecuali `EMBED_ON_BUILD=1`.
 - Teks dari PDF hasil scan dibaca dengan OCR, sehingga beberapa judul berhuruf tebal bisa kehilangan spasi. Isi pasal dan angka sudah diperiksa terbaca dengan baik.
 
 ## Struktur

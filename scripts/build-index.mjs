@@ -3,6 +3,7 @@
 // Dijalankan otomatis sebelum `next dev` dan `next build`.
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -94,7 +95,14 @@ for (const src of sources) {
     continue;
   }
   const chunks = chunkDoc(src.slug, readFileSync(file, "utf8"));
-  chunks.forEach((c, i) => all.push({ id: `${src.slug}#${i}`, ...c }));
+  chunks.forEach((c, i) =>
+    all.push({
+      id: `${src.slug}#${i}`,
+      // Sidik jari isi chunk: embedding disimpan per sidik jari agar bisa dipakai ulang.
+      h: createHash("sha1").update(c.text).digest("hex").slice(0, 16),
+      ...c,
+    }),
+  );
   console.log(`  ${src.slug}: ${chunks.length} chunk`);
 }
 
