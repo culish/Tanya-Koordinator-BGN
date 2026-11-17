@@ -16,6 +16,10 @@ export const SOURCE_BY_SLUG: Record<string, Source> = Object.fromEntries(
   SOURCES.map((s) => [s.slug, s]),
 );
 
+/** "Keputusan Kepala BGN Nomor 63551 Tahun 2026", atau "Modul BGN Tahun 2025" bila tanpa nomor. */
+export const docName = (s: { jenis: string; nomor: string }) =>
+  /^\d/.test(s.nomor) ? `${s.jenis} Nomor ${s.nomor}` : `${s.jenis} ${s.nomor}`;
+
 export const driveUrl = (s: Source) => `https://drive.google.com/file/d/${s.driveId}/view`;
 export const docUrl = (s: Source) => s.url ?? driveUrl(s);
 

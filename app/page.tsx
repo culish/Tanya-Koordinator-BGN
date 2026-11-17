@@ -1,7 +1,7 @@
 import Chat from "@/components/Chat";
 import { SOURCES, docUrl } from "@/lib/sources";
 
-const UPDATED = "16 November 2026";
+const UPDATED = "17 November 2026";
 
 function Emblem() {
   return (
@@ -18,12 +18,18 @@ export default function Home() {
   const grouped = SOURCES.reduce<Record<string, typeof SOURCES>>((acc, s) => {
     const key = s.jenis.startsWith("Surat Edaran")
       ? "Surat Edaran"
-      : /^(juknis|pedoman)/.test(s.slug)
-        ? "Petunjuk Teknis & Pedoman"
-        : "Keputusan";
+      : s.jenis.startsWith("Peraturan")
+        ? "Peraturan BGN"
+        : s.jenis.startsWith("Modul")
+          ? "Modul"
+          : /^(juknis|pedoman)/.test(s.slug) || s.slug === "sk-63551-2026"
+            ? "Petunjuk Teknis & Pedoman"
+            : "Keputusan & Lainnya";
     (acc[key] ??= []).push(s);
     return acc;
   }, {});
+  const ORDER = ["Peraturan BGN", "Petunjuk Teknis & Pedoman", "Keputusan & Lainnya", "Surat Edaran", "Modul"];
+  const groups = ORDER.filter((g) => grouped[g]).map((g) => [g, grouped[g]] as const);
 
   return (
     <>
@@ -73,7 +79,7 @@ export default function Home() {
         <aside className="side">
           <section className="panel" id="dokumen">
             <h2 className="panel-title">Dokumen Rujukan</h2>
-            {Object.entries(grouped).map(([group, list]) => (
+            {groups.map(([group, list]) => (
               <div key={group} className="doc-group">
                 <h3>{group}</h3>
                 <ol className="doclist">

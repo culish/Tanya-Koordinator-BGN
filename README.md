@@ -74,9 +74,9 @@ npm run test:retrieval -- "apakah MBG tetap dibagikan saat hari Sabtu?"
 
 ## Catatan dokumen
 
-- **SK Nomor 63551 Tahun 2026** (perubahan juknis pembiayaan SPPG aglomerasi, 142 halaman hasil scan) belum dimasukkan karena filenya 43 MB dan tidak bisa diunduh otomatis. Ikuti langkah "Menambah dokumen" di atas untuk memasukkannya.
+- Tambahan 17 November 2026: SK 63551/2026 (perubahan juknis pembiayaan SPPG aglomerasi), Peraturan BGN Nomor 4 Tahun 2026, SK 63345.1/2026, dan empat modul (Penyusunan Menu, Edukasi Gizi Seimbang, Keamanan Pangan, Food Waste). Rancangan peraturan (termasuk daftar program penyusunannya), notulensi rapat, dan kajian hukum sengaja tidak dimasukkan karena belum berlaku.
 - Juknis dan pedoman dari https://www.bgn.go.id/juknis (8 dokumen, termasuk Juknis 401.1 lengkap 286 halaman) sudah dimasukkan.
-- **Embedding bertahap:** kuota embedding gratis Gemini terbatas per hari. `npm run index` menyimpan progres dan melanjutkan dari posisi terakhir, jadi cukup dijalankan ulang keesokan harinya. Chunk yang belum punya embedding tetap ditemukan lewat pencarian kata kunci. Build di Vercel tidak menghitung embedding (agar tidak menghabiskan kuota), kecuali `EMBED_ON_BUILD=1`.
+- **Embedding bertahap:** kuota embedding gratis Gemini terbatas per hari. `npm run index` menyimpan progres dan melanjutkan dari posisi terakhir, jadi cukup dijalankan ulang keesokan harinya. Dengan kunci gratis, gunakan batch kecil: `EMBED_BATCH=5 EMBED_PAUSE_MS=20000 npm run index`. Chunk yang belum punya embedding tetap ditemukan lewat pencarian kata kunci. Build di Vercel tidak menghitung embedding (agar tidak menghabiskan kuota), kecuali `EMBED_ON_BUILD=1`.
 - Teks dari PDF hasil scan dibaca dengan OCR, sehingga beberapa judul berhuruf tebal bisa kehilangan spasi. Isi pasal dan angka sudah diperiksa terbaca dengan baik.
 
 ## Struktur

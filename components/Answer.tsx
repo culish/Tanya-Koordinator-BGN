@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useId, useState, type ReactNode } from "react";
+import { docName } from "@/lib/sources";
 
 export type SourceRef = {
   n: number;
@@ -151,7 +152,7 @@ export default function Answer({
     ) : null;
 
   async function copy() {
-    const refs = shown.map((s) => `[${s.n}] ${s.jenis} Nomor ${s.nomor} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}`);
+    const refs = shown.map((s) => `[${s.n}] ${docName(s)} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}`);
     await navigator.clipboard.writeText([text, "", "Rujukan:", ...refs].join("\n"));
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
@@ -175,7 +176,7 @@ export default function Answer({
                   <span className="ref-n">{s.n}</span>
                   <div className="ref-main">
                     <span className="ref-doc">
-                      {s.jenis} Nomor {s.nomor}
+                      {docName(s)}
                       {s.halaman && <em> · {s.halaman}</em>}
                     </span>
                     <span className="ref-title">{s.judul}</span>

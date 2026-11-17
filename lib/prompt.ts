@@ -1,5 +1,5 @@
 import type { Retrieved } from "./retrieve";
-import { SOURCE_BY_SLUG, pageLabel } from "./sources";
+import { SOURCE_BY_SLUG, docName, pageLabel } from "./sources";
 
 export const NOT_FOUND =
   "Maaf, saya belum menemukan jawabannya di dokumen Surat Edaran dan Petunjuk Teknis yang tersedia.";
@@ -22,7 +22,7 @@ export function buildContext(chunks: Retrieved[]) {
     .map((c, i) => {
       const s = SOURCE_BY_SLUG[c.slug];
       const where = pageLabel(c.pageStart, c.pageEnd);
-      return `[${i + 1}] ${s.jenis} Nomor ${s.nomor} tentang ${s.judul}${where ? ` (${where})` : ""}\n${c.text}`;
+      return `[${i + 1}] ${docName(s)} tentang ${s.judul}${where ? ` (${where})` : ""}\n${c.text}`;
     })
     .join("\n\n---\n\n");
 }

@@ -158,5 +158,61 @@
     "judul": "Besaran Pemberian Insentif Ketersediaan dan Mutu Layanan SPPG",
     "singkat": "SK 63527/2026 Insentif Layanan SPPG",
     "driveId": "1FbTeObS23kiQp5AipMb2AWyXVPhq7BwY"
+  },
+  {
+    "slug": "sk-63551-2026",
+    "jenis": "Keputusan Kepala BGN",
+    "nomor": "63551 Tahun 2026",
+    "judul": "Perubahan atas Keputusan Kepala BGN Nomor 63539 tentang Petunjuk Teknis Pembiayaan Bahan Baku Pangan dan Pembiayaan Operasional pada SPPG Aglomerasi Program Makan Bergizi Gratis",
+    "singkat": "Juknis Pembiayaan SPPG Aglomerasi (perubahan)",
+    "driveId": "1-oPYGQ_V8RdUV9iTIkE5sgWHWA89aY2i"
+  },
+  {
+    "slug": "perbgn-4-2026",
+    "jenis": "Peraturan Badan Gizi Nasional",
+    "nomor": "4 Tahun 2026",
+    "judul": "Sistem Penjaminan Keamanan Pangan dan Mutu Pangan di Lingkungan Badan Gizi Nasional",
+    "singkat": "PerBGN 4/2026 Keamanan & Mutu Pangan",
+    "driveId": "1gUW-PCRgnloLPm1IKKE3W5VTf6-quMSi"
+  },
+  {
+    "slug": "sk-63345-1-2026",
+    "jenis": "Keputusan Kepala BGN",
+    "nomor": "63345.1 Tahun 2026",
+    "judul": "Tim Pengelola dan Penatausahaan Barang Milik Negara berupa Persediaan Eselon II di Lingkungan BGN",
+    "singkat": "SK Tim Pengelola BMN Persediaan",
+    "driveId": "1KDovUfsVXYskfBdprRRvglO7YNGLbDR_"
+  },
+  {
+    "slug": "modul-penyusunan-menu-2025",
+    "jenis": "Modul BGN",
+    "nomor": "Tahun 2025",
+    "judul": "Modul Penyusunan Menu Program Makan Bergizi Gratis",
+    "singkat": "Modul Penyusunan Menu MBG",
+    "driveId": "1pOQvXsaRW9Lay6tet5PRfrRCu65KjuRX"
+  },
+  {
+    "slug": "modul-edukasi-gizi-seimbang",
+    "jenis": "Modul BGN",
+    "nomor": "Tahun 2025",
+    "judul": "Modul Edukasi Gizi Seimbang",
+    "singkat": "Modul Edukasi Gizi Seimbang",
+    "driveId": "1lij5SwFhvUDhZhzvV61NN3w9CLLAW59x"
+  },
+  {
+    "slug": "modul-keamanan-pangan",
+    "jenis": "Modul BGN",
+    "nomor": "Tahun 2025",
+    "judul": "Modul Keamanan Pangan",
+    "singkat": "Modul Keamanan Pangan",
+    "driveId": "1z_fRhpvqJJk-PRVFpEkeGdADVWJbs--k"
+  },
+  {
+    "slug": "modul-food-waste",
+    "jenis": "Modul BGN",
+    "nomor": "Tahun 2025",
+    "judul": "Modul Pengelolaan Sisa Pangan (Food Waste)",
+    "singkat": "Modul Food Waste",
+    "driveId": "1X8iHIZ25dFw8eO8nIOMO4DU7JrJN0y-r"
   }
 ]

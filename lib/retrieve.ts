@@ -123,6 +123,8 @@ function docHint(query: string): string | null {
   if (/mendagri|menteri dalam negeri|pemda|pemerintah daerah/.test(q)) return "se-mendagri-500-1-5844";
   if (/deputi|tauwas/.test(q)) return "se-deputi-tauwas-05-2026";
   if (/63527/.test(q)) return "sk-63527-2026";
+  if (/63551|aglomerasi/.test(q)) return "sk-63551-2026";
+  if (/perbgn\s*(?:no\.?\s*)?4\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?4\b/.test(q)) return "perbgn-4-2026";
   if (/401\.?1|juknis tata kelola/.test(q)) return "juknis-401-1-2025";
   return null;
 }
@@ -189,7 +191,8 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
   for (const [idx, score] of [...fused.entries()].sort((a, b) => b[1] - a[1])) {
     const c = CHUNKS[idx];
     // Batasi agar satu dokumen panjang (juknis) tidak memonopoli konteks.
-    if ((perDoc.get(c.slug) ?? 0) >= 4) continue;
+    // Dokumen yang disebut langsung dalam pertanyaan boleh mengisi lebih banyak.
+    if ((perDoc.get(c.slug) ?? 0) >= (c.slug === hint ? 6 : 4)) continue;
     perDoc.set(c.slug, (perDoc.get(c.slug) ?? 0) + 1);
     picked.push({ ...c, score });
     if (picked.length >= k) break;
