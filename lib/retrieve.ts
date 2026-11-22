@@ -122,6 +122,8 @@ function docHint(query: string): string | null {
   }
   if (/mendagri|menteri dalam negeri|pemda|pemerintah daerah/.test(q)) return "se-mendagri-500-1-5844";
   if (/deputi|tauwas/.test(q)) return "se-deputi-tauwas-05-2026";
+  if (/manajemen krisis|buku saku krisis/.test(q)) return "pedoman-manajemen-krisis-2026";
+  if (/perbgn\s*(?:no\.?\s*)?13\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?13\b|hari pelayanan efektif/.test(q)) return "perbgn-13-2026";
   if (/63527/.test(q)) return "sk-63527-2026";
   if (/63551|aglomerasi/.test(q)) return "sk-63551-2026";
   if (/perbgn\s*(?:no\.?\s*)?4\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?4\b/.test(q)) return "perbgn-4-2026";
@@ -185,6 +187,12 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
   // Reciprocal Rank Fusion
   const fused = new Map<number, number>();
   for (const r of rankings) r.forEach((idx, pos) => fused.set(idx, (fused.get(idx) ?? 0) + 1 / (60 + pos)));
+  // Rancangan/notulensi/kajian diberi bobot lebih rendah supaya aturan yang berlaku didahulukan,
+  // kecuali dokumen itu disebut langsung dalam pertanyaan.
+  for (const [idx, sc] of fused) {
+    const c = CHUNKS[idx];
+    if (c.slug !== hint && SOURCE_BY_SLUG[c.slug]?.belumBerlaku) fused.set(idx, sc * 0.8);
+  }
 
   const picked: Retrieved[] = [];
   const perDoc = new Map<string, number>();

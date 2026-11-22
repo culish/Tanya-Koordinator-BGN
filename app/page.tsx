@@ -1,7 +1,7 @@
 import Chat from "@/components/Chat";
 import { SOURCES, docUrl } from "@/lib/sources";
 
-const UPDATED = "17 November 2026";
+const UPDATED = "22 November 2026";
 
 function Emblem() {
   return (
@@ -16,7 +16,9 @@ function Emblem() {
 
 export default function Home() {
   const grouped = SOURCES.reduce<Record<string, typeof SOURCES>>((acc, s) => {
-    const key = s.jenis.startsWith("Surat Edaran")
+    const key = s.belumBerlaku
+      ? "Rancangan & Bahan Pembahasan"
+      : s.jenis.startsWith("Surat Edaran")
       ? "Surat Edaran"
       : s.jenis.startsWith("Peraturan")
         ? "Peraturan BGN"
@@ -28,7 +30,7 @@ export default function Home() {
     (acc[key] ??= []).push(s);
     return acc;
   }, {});
-  const ORDER = ["Peraturan BGN", "Petunjuk Teknis & Pedoman", "Keputusan & Lainnya", "Surat Edaran", "Modul"];
+  const ORDER = ["Peraturan BGN", "Petunjuk Teknis & Pedoman", "Keputusan & Lainnya", "Surat Edaran", "Modul", "Rancangan & Bahan Pembahasan"];
   const groups = ORDER.filter((g) => grouped[g]).map((g) => [g, grouped[g]] as const);
 
   return (
@@ -79,15 +81,16 @@ export default function Home() {
         <aside className="side">
           <section className="panel" id="dokumen">
             <h2 className="panel-title">Dokumen Rujukan</h2>
-            {groups.map(([group, list]) => (
-              <div key={group} className="doc-group">
-                <h3>{group}</h3>
+            {groups.map(([group, list]) => {
+              const items = (
                 <ol className="doclist">
                   {list.map((s) => (
                     <li key={s.slug}>
                       <a href={docUrl(s)} target="_blank" rel="noopener noreferrer">
                         <span className="doc-no">
-                          {s.nomor.startsWith("Tahun")
+                          {s.belumBerlaku
+                            ? `${s.jenis}${s.nomor.startsWith("tgl.") ? ` ${s.nomor.replace("tgl. ", "")}` : ""}`
+                            : s.nomor.startsWith("Tahun")
                             ? `${s.jenis} ${s.nomor.replace("Tahun ", "")}`
                             : `${s.jenis.replace(" Kepala BGN", "")} No. ${s.nomor}`}
                         </span>
@@ -96,8 +99,24 @@ export default function Home() {
                     </li>
                   ))}
                 </ol>
-              </div>
-            ))}
+              );
+              return group === "Rancangan & Bahan Pembahasan" ? (
+                <details key={group} className="doc-group doc-drafts">
+                  <summary>
+                    <h3>
+                      {group} ({list.length})
+                    </h3>
+                    <span className="drafts-note">Rancangan, notulensi, dan kajian. Bukan aturan yang berlaku.</span>
+                  </summary>
+                  {items}
+                </details>
+              ) : (
+                <div key={group} className="doc-group">
+                  <h3>{group}</h3>
+                  {items}
+                </div>
+              );
+            })}
           </section>
 
           <section className="panel notice" id="cara">

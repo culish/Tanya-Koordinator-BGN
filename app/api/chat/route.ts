@@ -67,6 +67,7 @@ export async function POST(req: Request) {
       nomor: s.nomor,
       judul: s.judul,
       singkat: s.singkat,
+      belumBerlaku: !!s.belumBerlaku,
       halaman: pageLabel(c.pageStart, c.pageEnd),
       url: docUrl(s),
       kutipan: c.text.length > 420 ? `${c.text.slice(0, 420).trimEnd()}…` : c.text,

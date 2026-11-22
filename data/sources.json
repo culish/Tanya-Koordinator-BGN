@@ -214,5 +214,335 @@
     "judul": "Modul Pengelolaan Sisa Pangan (Food Waste)",
     "singkat": "Modul Food Waste",
     "driveId": "1X8iHIZ25dFw8eO8nIOMO4DU7JrJN0y-r"
+  },
+  {
+    "slug": "perbgn-13-2026",
+    "jenis": "Peraturan Badan Gizi Nasional",
+    "nomor": "13 Tahun 2026",
+    "judul": "Hari Pelayanan Efektif Program Makan Bergizi Gratis dan Pemberian Insentif Ketersediaan dan Mutu Layanan SPPG",
+    "singkat": "PerBGN 13/2026 Hari Pelayanan Efektif",
+    "driveId": "1K7eka3U0TeNrglUGWjGy1mGFckT2d1IV"
+  },
+  {
+    "slug": "se-23-2026",
+    "jenis": "Surat Edaran Kepala BGN",
+    "nomor": "23 Tahun 2026",
+    "judul": "Kriteria Kualifikasi Jurutama Masak (Chef) SPPG dan Pendaftarannya pada SIPGN",
+    "singkat": "SE 23/2026 Kualifikasi Chef SPPG",
+    "driveId": "1VG8ay9Dw81MtSbda3_FuTJN7emfRiZvZ"
+  },
+  {
+    "slug": "pedoman-manajemen-krisis-2026",
+    "jenis": "Pedoman BGN",
+    "nomor": "Tahun 2026",
+    "judul": "Buku Saku Pedoman Manajemen Krisis Program Makan Bergizi Gratis",
+    "singkat": "Pedoman Manajemen Krisis",
+    "driveId": "1DAJ3OF2wARmPkL3J7qXlysJtz_BTTcT7"
+  },
+  {
+    "slug": "daftar-progsun-perbgn-2026",
+    "jenis": "Daftar Program Penyusunan",
+    "nomor": "Tahun 2026",
+    "judul": "Daftar Program Penyusunan Peraturan BGN Tahun 2026 (perencanaan, bukan aturan)",
+    "singkat": "Daftar Progsun Peraturan BGN 2026",
+    "driveId": "1ZKbXTLvPOIytTB-a_lwlBjaAvidl8Vwj",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-hari-pelayanan",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Hari Pelayanan MBG dan Insentif Ketersediaan dan Mutu Layanan SPPG (rancangan, sudah ditetapkan sebagai PerBGN 13/2026)",
+    "singkat": "Rancangan PerBGN Hari Pelayanan",
+    "driveId": "18fU73DW-RD1RWnZpEAcmD_AitTbnkcbM",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-hari-pelayanan",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi Rancangan PerBGN tentang Hari Pelayanan dan Insentif SPPG",
+    "singkat": "NU RPerBGN Hari Pelayanan",
+    "driveId": "1st1W9kMaQNWAt3SfEq-5JiqNjK6JUjKx",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-hari-pelayanan-20260827",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 27 Agustus 2026",
+    "judul": "Pembahasan Rancangan PerBGN tentang Hari Pelayanan MBG dan Insentif SPPG",
+    "singkat": "Notulensi Hari Pelayanan 27 Agt 2026",
+    "driveId": "1n16_E_qd6QjluznmpKn7XoS6UoIdX7Px",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-ppt",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Penyelenggaraan Pusat Pelayanan Terpadu Badan Gizi Nasional",
+    "singkat": "Rancangan PerBGN Pusat Pelayanan Terpadu",
+    "driveId": "1e8VAk9HrA-VuFhOcRg5Q-ouZfa3s-Tvk",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-ppt",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi Rancangan PerBGN tentang Penyelenggaraan Pusat Pelayanan Terpadu BGN",
+    "singkat": "NU RPerBGN Pusat Pelayanan Terpadu",
+    "driveId": "1IpNhdw9BVAuSHpOQvgBSNvuwU1ZuAZ8h",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-harmonisasi-ppt-20260828",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 28 Agustus 2026",
+    "judul": "Harmonisasi Lanjutan Rancangan PerBGN tentang Penyelenggaraan Pusat Pelayanan Terpadu BGN",
+    "singkat": "Notulensi Harmonisasi PPT 28 Agt 2026",
+    "driveId": "1eJD4xXoMSDJe8hj4AAqKZ4XK4ugJ9EcH",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-manrisk",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Pedoman Manajemen Risiko BGN (hasil pembahasan 12 Juni 2026)",
+    "singkat": "Rancangan PerBGN Manajemen Risiko",
+    "driveId": "1uVgWB4AnOnOP4QDVtTCDEeXpp2Tbl00v",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-manrisk-20260612",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 12 Juni 2026",
+    "judul": "Pembahasan Rancangan PerBGN Manajemen Risiko BGN dan Juknis Manajemen Risiko Program MBG",
+    "singkat": "Notulensi Manrisk 12 Jun 2026",
+    "driveId": "1l_YMO5wYkgMm70whVpJvhioYI7QfKJnZ",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-empat-raperbgn-20260422",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 22–24 April 2026",
+    "judul": "Pembahasan Empat Rancangan PerBGN (Perencanaan, Pendanaan, dan lainnya)",
+    "singkat": "Notulensi 4 RaPerBGN Apr 2026",
+    "driveId": "18D5xNVm8SOovnQcSirrFH5USPXYTdF2C",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-kriteria-prioritas-lokasi",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Kriteria Prioritas Lokasi",
+    "singkat": "Rancangan PerBGN Kriteria Prioritas Lokasi",
+    "driveId": "15BETZKNYcGJ6bGI_uecCJHdk8LBm955l",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-pendanaan",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Pendanaan Dukungan Pelaksanaan Program MBG (hasil pembahasan 2 Juni 2026)",
+    "singkat": "Rancangan PerBGN Pendanaan MBG",
+    "driveId": "10ERxqcrvOcU1Z9Dz9xmKKxI7X3yxwYK8",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-pendanaan",
+    "jenis": "Notulensi Rapat",
+    "nomor": "Tahun 2026",
+    "judul": "Pembahasan Rancangan PerBGN tentang Pendanaan Dukungan Pelaksanaan Program MBG",
+    "singkat": "Notulensi RaPerBGN Pendanaan",
+    "driveId": "1CiKRXlPgFuzdojEfoq9SNz3F1KIyOT3W",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-perencanaan",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Perencanaan Penyelenggaraan Program MBG (hasil pembahasan 24 Juli 2026)",
+    "singkat": "Rancangan PerBGN Perencanaan MBG",
+    "driveId": "17_TaPSx69Y1PY2kVvTw58oSLvVffccvi",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-perencanaan",
+    "jenis": "Notulensi Rapat",
+    "nomor": "Tahun 2026",
+    "judul": "Tindak Lanjut Pembahasan Rancangan PerBGN tentang Perencanaan Penyelenggaraan Program MBG",
+    "singkat": "Notulensi RaPerBGN Perencanaan",
+    "driveId": "14_LVd8HALAXuuzsNkuufr6IZn3a9bNYp",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-pdn",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Penggunaan Produk Dalam Negeri dan Pelibatan UMK, Koperasi, dan BUMDes",
+    "singkat": "Rancangan PerBGN Produk Dalam Negeri",
+    "driveId": "1uGnVMMPr_mYQJX4gsNld74rbuPq3fy3N",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-pdn",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi Rancangan PerBGN tentang Penggunaan Produk Dalam Negeri",
+    "singkat": "NU RPerBGN Produk Dalam Negeri",
+    "driveId": "15pEFO4x-pf00Qitdj3SyDu41qhkPeKR5",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-pdn-20260624",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 24 Juni 2026",
+    "judul": "Rapat Pleno Harmonisasi Rancangan PerBGN tentang Penggunaan Produk Dalam Negeri",
+    "singkat": "Notulensi Harmonisasi PDN 24 Jun 2026",
+    "driveId": "1EjRd58VIrdUj_0GI9Ej2DBUM7myYb02a",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-sotk",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Perubahan Organisasi dan Tata Kerja BGN dan KPPG",
+    "singkat": "Rancangan PerBGN Perubahan SOTK",
+    "driveId": "1neXCeKAm7G73tAyLFYNV3JLoPgMRJ2Fl",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-sotk",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi PerBGN Perubahan SOTK BGN dan KPPG",
+    "singkat": "NU PerBGN Perubahan SOTK",
+    "driveId": "1bvoPSr9RcRNBy087Gf-GzJhGl-lw3Wks",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-sotk-20260205",
+    "jenis": "Notulensi Rapat",
+    "nomor": "tgl. 5 Februari 2026",
+    "judul": "Pembahasan Rancangan PerBGN Perubahan SOTK BGN dan KPPG",
+    "singkat": "Notulensi SOTK 5 Feb 2026",
+    "driveId": "12HF9w1NAclHfDiyy0wVM6KnNtWJNJNPk",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "analisis-evaluasi-sotk-kppg",
+    "jenis": "Analisis dan Evaluasi",
+    "nomor": "Tahun 2026",
+    "judul": "Hasil Analisis dan Evaluasi PerBGN tentang SOTK KPPG",
+    "singkat": "Anev PerBGN SOTK KPPG",
+    "driveId": "1_rwTVLX27fIqV8n49xbf4xjfgwUBTzfT",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "analisis-evaluasi-perbgn-1-2024",
+    "jenis": "Analisis dan Evaluasi",
+    "nomor": "Tahun 2026",
+    "judul": "Hasil Analisis dan Evaluasi Perubahan atas PerBGN Nomor 1 Tahun 2024",
+    "singkat": "Anev Perubahan PerBGN 1/2024",
+    "driveId": "1WltTXZ1VswuOIWzKosKuGlnYR7_R3FfT",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "rancangan-perbgn-satu-data",
+    "jenis": "Rancangan PerBGN",
+    "nomor": "Tahun 2026",
+    "judul": "Penyelenggaraan Satu Data Badan Gizi Nasional",
+    "singkat": "Rancangan PerBGN Satu Data",
+    "driveId": "1Qdj4R1qj_vu1ehUwf-vFfMiiP28yuIBe",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-satu-data",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi Rancangan PerBGN tentang Penyelenggaraan Satu Data BGN",
+    "singkat": "NU RPerBGN Satu Data",
+    "driveId": "1tl88-M5obGvLZ-5xl8MHRnvPfF5EFAav",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-harmonisasi-satu-data",
+    "jenis": "Notulensi Rapat",
+    "nomor": "Tahun 2026",
+    "judul": "Harmonisasi Rancangan PerBGN Satu Data Pemenuhan Gizi Nasional",
+    "singkat": "Notulensi Harmonisasi Satu Data",
+    "driveId": "1EGrKWqiJzGAnHoCmyT_kSaPqmsTWyiKg",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "nu-perbgn-kerja-sama",
+    "jenis": "Naskah Urgensi",
+    "nomor": "Tahun 2026",
+    "judul": "Naskah Urgensi Rancangan PerBGN tentang Kerja Sama Pembangunan SPPG",
+    "singkat": "NU RPerBGN Kerja Sama SPPG",
+    "driveId": "1Bf5jmjOON4haFXqHyEtD1pe8ll7wMjs4",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "notulensi-harmonisasi-kerja-sama",
+    "jenis": "Notulensi Rapat",
+    "nomor": "Tahun 2026",
+    "judul": "Harmonisasi Rancangan PerBGN tentang Kerja Sama",
+    "singkat": "Notulensi Harmonisasi Kerja Sama",
+    "driveId": "137TgsAY4tzkJjcjezLgL57LS7pMAjVFW",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-upg-koordinator",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Kajian Hukum UPG Koordinator BGN",
+    "singkat": "Kajian Hukum UPG Koordinator",
+    "driveId": "1Ibws_BbIrQWdHE4JRtGtixx0FG0nDr7q",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-iku",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Rancangan Keputusan Kepala BGN tentang Penetapan Indikator Kinerja Utama BGN 2025–2029",
+    "singkat": "Kajian Hukum IKU BGN",
+    "driveId": "1CGRYL30wDKirpUmtMES6YL4yilx22eXZ",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-tindak-lanjut-pengawasan",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Pedoman Tindak Lanjut Pengawasan",
+    "singkat": "Kajian Hukum Tindak Lanjut Pengawasan",
+    "driveId": "1wHiNcktSwG2TV9pf09jMExZK7nQvbWIp",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-tim-rb",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Tim Reformasi Birokrasi",
+    "singkat": "Kajian Hukum Tim Reformasi Birokrasi",
+    "driveId": "1rBTAAh_RePocXurQXX-_Has3lvipP1zt",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-ukpbj",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Perubahan UKPBJ",
+    "singkat": "Kajian Hukum Perubahan UKPBJ",
+    "driveId": "1rleQKtKVtKQYz2z9rYnCugzlp3Bqhf5P",
+    "belumBerlaku": true
+  },
+  {
+    "slug": "kajian-hukum-kuasa-pemegang-barang",
+    "jenis": "Kajian Hukum",
+    "nomor": "Tahun 2026",
+    "judul": "Kuasa Pemegang Barang",
+    "singkat": "Kajian Hukum Kuasa Pemegang Barang",
+    "driveId": "1TzJe8kjk-z9dQjMRTFQ2f3Ri4rtKvaHn",
+    "belumBerlaku": true
   }
 ]

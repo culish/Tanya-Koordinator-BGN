@@ -223,3 +223,12 @@ button { font: inherit; cursor: pointer; }
 @media (min-width: 981px) {
   .chat { position: sticky; top: 96px; }
 }
+
+/* Rancangan & bahan pembahasan: dilipat, diberi tanda jelas */
+.doc-drafts > summary { cursor: pointer; list-style: none; }
+.doc-drafts > summary::-webkit-details-marker { display: none; }
+.doc-drafts > summary h3 { display: inline; }
+.doc-drafts > summary h3::after { content: " +"; color: var(--gold-600, #b8860b); }
+.doc-drafts[open] > summary h3::after { content: " −"; }
+.drafts-note { display: block; margin: 4px 0 8px; font-size: 12px; color: var(--muted); }
+.badge-draft { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px; font-size: 11px; font-weight: 700; font-style: normal; color: #8a4b00; background: #fff1d6; border: 1px solid #f0c987; vertical-align: 1px; }

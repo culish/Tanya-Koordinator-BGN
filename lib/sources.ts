@@ -9,9 +9,13 @@ export type Source = {
   driveId: string;
   /** Halaman resmi di bgn.go.id, jika ada. Dipakai sebagai tautan utama. */
   url?: string;
+  /** true untuk rancangan, notulensi, naskah urgensi, kajian hukum: bukan aturan yang berlaku. */
+  belumBerlaku?: boolean;
 };
 
 export const SOURCES: Source[] = sourcesJson;
+
+export const DRAFT_NOTE = "bukan aturan berlaku, hanya bahan pembahasan";
 export const SOURCE_BY_SLUG: Record<string, Source> = Object.fromEntries(
   SOURCES.map((s) => [s.slug, s]),
 );

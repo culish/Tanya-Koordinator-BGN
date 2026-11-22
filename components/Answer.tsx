@@ -10,6 +10,7 @@ export type SourceRef = {
   nomor: string;
   judul: string;
   singkat: string;
+  belumBerlaku?: boolean;
   halaman: string;
   url: string;
   kutipan: string;
@@ -152,7 +153,7 @@ export default function Answer({
     ) : null;
 
   async function copy() {
-    const refs = shown.map((s) => `[${s.n}] ${docName(s)} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}`);
+    const refs = shown.map((s) => `[${s.n}] ${docName(s)} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}${s.belumBerlaku ? " (belum berlaku)" : ""}`);
     await navigator.clipboard.writeText([text, "", "Rujukan:", ...refs].join("\n"));
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
@@ -178,6 +179,7 @@ export default function Answer({
                     <span className="ref-doc">
                       {docName(s)}
                       {s.halaman && <em> · {s.halaman}</em>}
+                      {s.belumBerlaku && <span className="badge-draft">Belum berlaku</span>}
                     </span>
                     <span className="ref-title">{s.judul}</span>
                   </div>
