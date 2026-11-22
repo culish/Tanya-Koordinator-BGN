@@ -11,6 +11,7 @@ export type SourceRef = {
   judul: string;
   singkat: string;
   belumBerlaku?: boolean;
+  web?: boolean;
   halaman: string;
   url: string;
   kutipan: string;
@@ -126,8 +127,10 @@ export default function Answer({
   text,
   sources,
   status,
+  web,
 }: {
   text: string;
+  web?: boolean;
   sources: SourceRef[];
   status: "streaming" | "done" | "error";
 }) {
@@ -153,7 +156,7 @@ export default function Answer({
     ) : null;
 
   async function copy() {
-    const refs = shown.map((s) => `[${s.n}] ${docName(s)} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}${s.belumBerlaku ? " (belum berlaku)" : ""}`);
+    const refs = shown.map((s) => s.web ? `[${s.n}] ${s.judul} (internet): ${s.url}` : `[${s.n}] ${docName(s)} tentang ${s.judul}${s.halaman ? `, ${s.halaman}` : ""}${s.belumBerlaku ? " (belum berlaku)" : ""}`);
     await navigator.clipboard.writeText([text, "", "Rujukan:", ...refs].join("\n"));
     setCopied(true);
     setTimeout(() => setCopied(false), 1800);
@@ -162,6 +165,12 @@ export default function Answer({
   return (
     <article className={`a a-${status}`}>
       <span className="a-label">Jawaban</span>
+      {web && (
+        <p className="web-note">
+          Tidak ditemukan di dokumen rujukan. Jawaban ini diambil dari pencarian internet dan belum diverifikasi, jadi
+          periksa sumbernya sebelum dipakai.
+        </p>
+      )}
       <div className="a-text">
         {text ? renderBlocks(text, cite) : <p className="typing">Menelusuri dokumen rujukan<span>…</span></p>}
         {status === "streaming" && text && <span className="caret" aria-hidden="true" />}
@@ -169,7 +178,7 @@ export default function Answer({
 
       {status === "done" && shown.length > 0 && (
         <div className="refs">
-          <h4>Dasar rujukan</h4>
+          <h4>{web ? "Sumber dari internet" : "Dasar rujukan"}</h4>
           <ol>
             {shown.map((s) => (
               <li key={s.n} id={`${id}-src-${s.n}`} className={open === s.n ? "is-open" : ""}>
@@ -177,19 +186,21 @@ export default function Answer({
                   <span className="ref-n">{s.n}</span>
                   <div className="ref-main">
                     <span className="ref-doc">
-                      {docName(s)}
+                      {s.web ? s.judul : docName(s)}
                       {s.halaman && <em> · {s.halaman}</em>}
                       {s.belumBerlaku && <span className="badge-draft">Belum berlaku</span>}
                     </span>
-                    <span className="ref-title">{s.judul}</span>
+                    {!s.web && <span className="ref-title">{s.judul}</span>}
                   </div>
                 </div>
                 <div className="ref-actions">
-                  <button type="button" onClick={() => setOpen(open === s.n ? null : s.n)} aria-expanded={open === s.n}>
-                    {open === s.n ? "Tutup kutipan" : "Lihat kutipan"}
-                  </button>
+                  {s.kutipan && (
+                    <button type="button" onClick={() => setOpen(open === s.n ? null : s.n)} aria-expanded={open === s.n}>
+                      {open === s.n ? "Tutup kutipan" : "Lihat kutipan"}
+                    </button>
+                  )}
                   <a href={s.url} target="_blank" rel="noopener noreferrer">
-                    Buka dokumen
+                    {s.web ? "Buka halaman" : "Buka dokumen"}
                   </a>
                 </div>
                 {open === s.n && <blockquote>{s.kutipan}</blockquote>}

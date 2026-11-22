@@ -124,7 +124,7 @@ export default function Home() {
             <ol className="steps">
               <li>Tulis pertanyaan dengan kalimat biasa, misalnya “Bagaimana pembagian MBG saat libur sekolah?”.</li>
               <li>Periksa nomor rujukan di dalam jawaban, lalu buka dokumennya bila perlu.</li>
-              <li>Jika jawabannya tidak ada di dokumen, layanan ini akan menyampaikannya dan tidak menebak.</li>
+              <li>Jika jawabannya tidak ada di dokumen, layanan ini mencari di internet dan memberi tanda bahwa jawabannya belum diverifikasi.</li>
             </ol>
             <p className="fineprint">
               Layanan ini alat bantu, bukan pengganti dokumen resmi. Untuk keputusan operasional,

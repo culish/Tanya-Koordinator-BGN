@@ -93,3 +93,11 @@ scripts/             ekstraksi PDF, pembangunan indeks, embedding
 ```
 
 > Alat bantu rujukan, bukan kanal resmi Badan Gizi Nasional. Jawaban dibuat otomatis dan dapat keliru; selalu periksa naskah aslinya.
+
+## Pencarian internet (cadangan)
+
+Jika jawaban tidak ada di dokumen rujukan, chatbot mencari di Google (Gemini Google Search grounding) dan menampilkan jawabannya dengan catatan "belum diverifikasi" beserta tautan sumbernya.
+
+- Fitur ini butuh key Gemini dengan billing aktif. Key gratis menolaknya (429), dan chatbot otomatis kembali ke jawaban "belum menemukan".
+- `GEMINI_SEARCH_API_KEY` (opsional): key khusus untuk pencarian internet. Jika kosong, dipakai `GEMINI_API_KEY`.
+- `WEB_SEARCH=off` mematikan fitur ini.

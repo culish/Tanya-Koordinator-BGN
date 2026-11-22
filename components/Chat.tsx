@@ -5,7 +5,7 @@ import Answer, { type SourceRef } from "./Answer";
 
 type Turn =
   | { role: "user"; content: string }
-  | { role: "assistant"; content: string; sources: SourceRef[]; status: "streaming" | "done" | "error" };
+  | { role: "assistant"; content: string; sources: SourceRef[]; web?: boolean; status: "streaming" | "done" | "error" };
 
 const FAQ = [
   "Bagaimana pelayanan MBG pada saat hari libur sekolah?",
@@ -79,6 +79,7 @@ export default function Chat() {
           if (!line.trim()) continue;
           const ev = JSON.parse(line);
           if (ev.type === "sources") patchLast(() => ({ sources: ev.sources }));
+          else if (ev.type === "web") patchLast(() => ({ sources: ev.sources, web: true, content: "" }));
           else if (ev.type === "delta") patchLast((t) => ({ content: t.content + ev.text }));
           else if (ev.type === "done") patchLast(() => ({ status: "done" }));
           else if (ev.type === "error") patchLast(() => ({ content: ev.message, status: "error" }));
@@ -107,7 +108,7 @@ export default function Chat() {
       <div className="chat-head">
         <div>
           <h2>Layanan Tanya Jawab</h2>
-          <p>Jawaban bersumber dari dokumen rujukan yang terdaftar</p>
+          <p>Jawaban bersumber dari dokumen rujukan, atau dari internet bila tidak ada di dokumen</p>
         </div>
         {turns.length > 0 && (
           <button type="button" className="btn-ghost" onClick={reset}>
@@ -142,7 +143,7 @@ export default function Chat() {
                 <p>{t.content}</p>
               </div>
             ) : (
-              <Answer key={i} text={t.content} sources={t.sources} status={t.status} />
+              <Answer key={i} text={t.content} sources={t.sources} web={t.web} status={t.status} />
             ),
           )
         )}
