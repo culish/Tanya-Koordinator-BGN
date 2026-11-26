@@ -131,7 +131,7 @@ function docHint(query: string): string | null {
     if (hit) return hit.slug;
   }
   if (/63527/.test(q)) return "sk-63527-2026";
-  if (/63551|aglomerasi/.test(q)) return "sk-63551-2026";
+  if (/63551/.test(q)) return "sk-63551-2026";
   if (/perbgn\s*(?:no\.?\s*)?4\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?4\b/.test(q)) return "perbgn-4-2026";
   if (/401\.?1|juknis tata kelola/.test(q)) return "juknis-401-1-2025";
   return null;
@@ -195,9 +195,17 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
   for (const r of rankings) r.forEach((idx, pos) => fused.set(idx, (fused.get(idx) ?? 0) + 1 / (60 + pos)));
   // Rancangan/notulensi/kajian diberi bobot lebih rendah supaya aturan yang berlaku didahulukan,
   // kecuali dokumen itu disebut langsung dalam pertanyaan.
+  // Dokumen khusus (mis. juknis SPPG aglomerasi) hanya didahulukan bila pertanyaannya menyebut kasus itu.
+  const qLower = query.toLowerCase();
+  const khususOn = (slug: string) => {
+    const k = SOURCE_BY_SLUG[slug]?.khusus;
+    return !k || slug === hint || new RegExp(k.kata, "i").test(qLower);
+  };
   for (const [idx, sc] of fused) {
     const c = CHUNKS[idx];
-    if (c.slug !== hint && SOURCE_BY_SLUG[c.slug]?.belumBerlaku) fused.set(idx, sc * 0.8);
+    const src = SOURCE_BY_SLUG[c.slug];
+    if (c.slug !== hint && src?.belumBerlaku) fused.set(idx, sc * 0.8);
+    if (!khususOn(c.slug)) fused.set(idx, (fused.get(idx) ?? sc) * 0.4);
   }
 
   const picked: Retrieved[] = [];
@@ -206,7 +214,8 @@ export async function retrieve(query: string, opts: { k?: number; apiKey?: strin
     const c = CHUNKS[idx];
     // Batasi agar satu dokumen panjang (juknis) tidak memonopoli konteks.
     // Dokumen yang disebut langsung dalam pertanyaan boleh mengisi lebih banyak.
-    if ((perDoc.get(c.slug) ?? 0) >= (c.slug === hint ? 6 : 4)) continue;
+    const cap = c.slug === hint ? 6 : khususOn(c.slug) ? 4 : 1;
+    if ((perDoc.get(c.slug) ?? 0) >= cap) continue;
     perDoc.set(c.slug, (perDoc.get(c.slug) ?? 0) + 1);
     picked.push({ ...c, score });
     if (picked.length >= k) break;

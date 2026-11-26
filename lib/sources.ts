@@ -11,6 +11,8 @@ export type Source = {
   url?: string;
   /** true untuk rancangan, notulensi, naskah urgensi, kajian hukum: bukan aturan yang berlaku. */
   belumBerlaku?: boolean;
+  /** Dokumen yang hanya berlaku untuk kasus tertentu (mis. SPPG aglomerasi). Kata kunci berupa regex. */
+  khusus?: { label: string; kata: string };
 };
 
 export const SOURCES: Source[] = sourcesJson;

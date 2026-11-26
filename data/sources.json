@@ -165,7 +165,11 @@
     "nomor": "63551 Tahun 2026",
     "judul": "Perubahan atas Keputusan Kepala BGN Nomor 63539 tentang Petunjuk Teknis Pembiayaan Bahan Baku Pangan dan Pembiayaan Operasional pada SPPG Aglomerasi Program Makan Bergizi Gratis",
     "singkat": "Juknis Pembiayaan SPPG Aglomerasi (perubahan)",
-    "driveId": "1-oPYGQ_V8RdUV9iTIkE5sgWHWA89aY2i"
+    "driveId": "1-oPYGQ_V8RdUV9iTIkE5sgWHWA89aY2i",
+    "khusus": {
+      "label": "khusus SPPG aglomerasi",
+      "kata": "aglomerasi|63539|63551"
+    }
   },
   {
     "slug": "perbgn-4-2026",
@@ -551,7 +555,11 @@
     "nomor": "63539 Tahun 2026",
     "judul": "Petunjuk Teknis Pembiayaan Bahan Baku Pangan dan Pembiayaan Operasional pada SPPG Aglomerasi Program MBG",
     "singkat": "Juknis Pembiayaan SPPG Aglomerasi",
-    "driveId": "18x22wNrAIJR_LULkNv0FgZw2CTyFwtbs"
+    "driveId": "18x22wNrAIJR_LULkNv0FgZw2CTyFwtbs",
+    "khusus": {
+      "label": "khusus SPPG aglomerasi",
+      "kata": "aglomerasi|63539|63551"
+    }
   },
   {
     "slug": "sop-01-perencanaan-menu",
