@@ -544,5 +544,349 @@
     "singkat": "Kajian Hukum Kuasa Pemegang Barang",
     "driveId": "1TzJe8kjk-z9dQjMRTFQ2f3Ri4rtKvaHn",
     "belumBerlaku": true
+  },
+  {
+    "slug": "sk-63539-2026",
+    "jenis": "Keputusan Kepala BGN",
+    "nomor": "63539 Tahun 2026",
+    "judul": "Petunjuk Teknis Pembiayaan Bahan Baku Pangan dan Pembiayaan Operasional pada SPPG Aglomerasi Program MBG",
+    "singkat": "Juknis Pembiayaan SPPG Aglomerasi",
+    "driveId": "18x22wNrAIJR_LULkNv0FgZw2CTyFwtbs"
+  },
+  {
+    "slug": "sop-01-perencanaan-menu",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 1",
+    "judul": "Perencanaan Menu",
+    "singkat": "SOP 1 Perencanaan Menu",
+    "driveId": "1_2QBJNWAeNBg69Gu20p7SO9TI77of0_r"
+  },
+  {
+    "slug": "sop-02-survei-harga-pasar",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 2",
+    "judul": "Survei Harga Pasar",
+    "singkat": "SOP 2 Survei Harga Pasar",
+    "driveId": "17v4Rxi7FVWVNC72YSvO16ITg2iUY7TUD"
+  },
+  {
+    "slug": "sop-03-penerimaan-dan-penyimpanan-sayur-dan-buah",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 3",
+    "judul": "Penerimaan dan Penyimpanan Sayur dan Buah",
+    "singkat": "SOP 3 Penerimaan dan Penyimpanan Sayur dan Buah",
+    "driveId": "1Vdzy6EiZnldeZjGH-6dXdrc2zP4Bbp2Y"
+  },
+  {
+    "slug": "sop-04-penerimaan-dan-penyimpanan-daging-unggas",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 4",
+    "judul": "Penerimaan dan Penyimpanan Daging Unggas",
+    "singkat": "SOP 4 Penerimaan dan Penyimpanan Daging Unggas",
+    "driveId": "1ncve6G0_fQAo18iRSdPTbZqEa1wT23Ej"
+  },
+  {
+    "slug": "sop-05-penerimaan-dan-penyimpanan-ikan-dan-produk-perikanan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 5",
+    "judul": "Penerimaan dan Penyimpanan Ikan dan Produk Perikanan",
+    "singkat": "SOP 5 Penerimaan dan Penyimpanan Ikan dan Produk Perikanan",
+    "driveId": "1ZWkPuH-mGdPslKMJ1BS7EBAXrnb0G0eL"
+  },
+  {
+    "slug": "sop-06-penerimaan-dan-penyimpanan-telur",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 6",
+    "judul": "Penerimaan dan Penyimpanan Telur",
+    "singkat": "SOP 6 Penerimaan dan Penyimpanan Telur",
+    "driveId": "1z-SdVz0-tYjw18vCfOCUO37YOAmuw4wE"
+  },
+  {
+    "slug": "sop-07-penerimaan-penyimpanan-dan-penyaluran-susu-pasteurisasi",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 7",
+    "judul": "Penerimaan, Penyimpanan, dan Penyaluran Susu Pasteurisasi",
+    "singkat": "SOP 7 Penerimaan, Penyimpanan, dan Penyaluran Susu Pasteuris",
+    "driveId": "1hw8_oKoVuTxc8Dep2yepIy5G6zhD2ZEr"
+  },
+  {
+    "slug": "sop-08-penerimaan-dan-penyimpanan-bahan-baku-kering",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 8",
+    "judul": "Penerimaan dan Penyimpanan Bahan Baku Kering",
+    "singkat": "SOP 8 Penerimaan dan Penyimpanan Bahan Baku Kering",
+    "driveId": "1tCXU6n2ai42IH1TXDhqbbzE0Dq-3X_tV"
+  },
+  {
+    "slug": "sop-09-persiapan-dan-pengolahan-sayur",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 9",
+    "judul": "Persiapan dan Pengolahan Sayur",
+    "singkat": "SOP 9 Persiapan dan Pengolahan Sayur",
+    "driveId": "1oLc9gbypfc_c-0zmMjyht0lqm6TKVmVs"
+  },
+  {
+    "slug": "sop-10-persiapan-dan-pengolahan-bahan-baku-buah",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 10",
+    "judul": "Persiapan dan Pengolahan Bahan Baku Buah",
+    "singkat": "SOP 10 Persiapan dan Pengolahan Bahan Baku Buah",
+    "driveId": "1VCXIDbIMXiG-QgNiojkiksX4yl1LtUnf"
+  },
+  {
+    "slug": "sop-11-persiapan-dan-pengolahan-daging-dan-unggas",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 11",
+    "judul": "Persiapan dan Pengolahan Daging dan Unggas",
+    "singkat": "SOP 11 Persiapan dan Pengolahan Daging dan Unggas",
+    "driveId": "1bU0H6vKXe62efJhKp_eIegH-sHiGGQ3Z"
+  },
+  {
+    "slug": "sop-12-persiapan-dan-pengolahan-ikan-dan-produk-perikanan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 12",
+    "judul": "Persiapan dan Pengolahan Ikan dan Produk Perikanan",
+    "singkat": "SOP 12 Persiapan dan Pengolahan Ikan dan Produk Perikanan",
+    "driveId": "1ejWVdc2wKSsmTyaCIhE3nBSFuGR4fXza"
+  },
+  {
+    "slug": "sop-13-persiapan-dan-pengolahan-telur",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 13",
+    "judul": "Persiapan dan Pengolahan Telur",
+    "singkat": "SOP 13 Persiapan dan Pengolahan Telur",
+    "driveId": "16l7T0ebQLFjvu4UyzuIfj9OYcnUha3FX"
+  },
+  {
+    "slug": "sop-14-persiapan-dan-pengolahan-nasi",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 14",
+    "judul": "Persiapan dan Pengolahan Nasi",
+    "singkat": "SOP 14 Persiapan dan Pengolahan Nasi",
+    "driveId": "1g2PIHVbH0MueeZH7yl5NLCh-G0rJ5DfF"
+  },
+  {
+    "slug": "sop-15-pengolahan-mbg-untuk-balita-usia-6-11-bulan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 15",
+    "judul": "Pengolahan MBG untuk Balita Usia 6-11 Bulan",
+    "singkat": "SOP 15 Pengolahan MBG untuk Balita Usia 6-11 Bulan",
+    "driveId": "1wl1JUCtwoZ81uvMVuQgqkSuviRZc5Pwn"
+  },
+  {
+    "slug": "sop-16-pengolahan-mbg-untuk-balita-usia-12-59-bulan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 16",
+    "judul": "Pengolahan MBG untuk Balita Usia 12-59 Bulan",
+    "singkat": "SOP 16 Pengolahan MBG untuk Balita Usia 12-59 Bulan",
+    "driveId": "1LW3HMtq4olq6qLpyh8B1L_vfCFYSQ8Ii"
+  },
+  {
+    "slug": "sop-17-pengolahan-mbg-untuk-ibu-hamil-dan-ibu-menyusui",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 17",
+    "judul": "Pengolahan MBG untuk Ibu Hamil dan Ibu Menyusui",
+    "singkat": "SOP 17 Pengolahan MBG untuk Ibu Hamil dan Ibu Menyusui",
+    "driveId": "1RpD1g1YD5DfaKfZEbD38AAEMpu_ITvk0"
+  },
+  {
+    "slug": "sop-18-pemorsian-dan-pelabelan-ompreng",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 18",
+    "judul": "Pemorsian dan Pelabelan Ompreng",
+    "singkat": "SOP 18 Pemorsian dan Pelabelan Ompreng",
+    "driveId": "1pqkkqMYG8sCXrWbhy9J72hnQT-Z98Hqo"
+  },
+  {
+    "slug": "sop-19-penyaluran-mbg-peserta-didik",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 19",
+    "judul": "Penyaluran MBG Peserta Didik",
+    "singkat": "SOP 19 Penyaluran MBG Peserta Didik",
+    "driveId": "1A9xxtNSouSLMagUiaDs1UTTEfi7IJGvN"
+  },
+  {
+    "slug": "sop-20-penyaluran-mbg-3b",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 20",
+    "judul": "Penyaluran MBG 3B",
+    "singkat": "SOP 20 Penyaluran MBG 3B",
+    "driveId": "1ROqFXdx9HXrslHGxQzi1f2DR9kQMvFVG"
+  },
+  {
+    "slug": "sop-21-pemeriksaan-alat-ukur-termometer-dan-timbangan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 21",
+    "judul": "Pemeriksaan Alat Ukur (Termometer dan Timbangan)",
+    "singkat": "SOP 21 Pemeriksaan Alat Ukur (Termometer dan Timbangan)",
+    "driveId": "1l3zxan8VcI-e8y8ISvAQp_n7MhQ90DjS"
+  },
+  {
+    "slug": "sop-22-pendinginan-makanan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 22",
+    "judul": "Pendinginan Makanan",
+    "singkat": "SOP 22 Pendinginan Makanan",
+    "driveId": "1lWotZ3UEXENQ7qQB6OHQWKjoVK7dup3Z"
+  },
+  {
+    "slug": "sop-23-pengambilan-penyimpanan-sampel-dan-uji-organoleptik-di-sppg",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 23",
+    "judul": "Pengambilan, Penyimpanan Sampel, dan Uji Organoleptik di SPPG",
+    "singkat": "SOP 23 Pengambilan, Penyimpanan Sampel, dan Uji Organoleptik",
+    "driveId": "1FaXn8YHIl7vBkwMUuPcLaxzl8IMq87ht"
+  },
+  {
+    "slug": "sop-24-pengambilan-penyimpanan-sampel-dan-uji-organoleptik-di-satua",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 24",
+    "judul": "Pengambilan, Penyimpanan Sampel, dan Uji Organoleptik di Satuan Pendidikan",
+    "singkat": "SOP 24 Pengambilan, Penyimpanan Sampel, dan Uji Organoleptik",
+    "driveId": "1iYqDtCiFqd1IuGWaMrZ9PaEpeUYQTD9R"
+  },
+  {
+    "slug": "sop-25-pengambilan-penyimpanan-sampel-dan-uji-organoleptik-di-posya",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 25",
+    "judul": "Pengambilan, Penyimpanan Sampel dan Uji Organoleptik di Posyandu/Titik Penyaluran",
+    "singkat": "SOP 25 Pengambilan, Penyimpanan Sampel dan Uji Organoleptik ",
+    "driveId": "17CGndwHUWjHRLuiIGDdmHPnT2edwjCft"
+  },
+  {
+    "slug": "sop-26-komunikasi-dan-koordinasi-dengan-penerima-manfaat",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 26",
+    "judul": "Komunikasi dan Koordinasi dengan Penerima Manfaat",
+    "singkat": "SOP 26 Komunikasi dan Koordinasi dengan Penerima Manfaat",
+    "driveId": "1G8XNnz0_K-FAhXnRj2OlYJg4Tlg4l95n"
+  },
+  {
+    "slug": "sop-27-pengembalian-dan-penelusuran-mbg-tidak-layak-konsumsi",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 27",
+    "judul": "Pengembalian dan Penelusuran MBG Tidak Layak Konsumsi",
+    "singkat": "SOP 27 Pengembalian dan Penelusuran MBG Tidak Layak Konsumsi",
+    "driveId": "1qaV91clUsArUs6mVBRNhMVyH-3MD-mRS"
+  },
+  {
+    "slug": "sop-28-tindakan-apabila-terjadi-keracunan-makanan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 28",
+    "judul": "Tindakan Apabila Terjadi Keracunan Makanan",
+    "singkat": "SOP 28 Tindakan Apabila Terjadi Keracunan Makanan",
+    "driveId": "1344DRXu6HCMhjXg8uwryEGS8yVBuajbD"
+  },
+  {
+    "slug": "sop-29-personal-higiene",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 29",
+    "judul": "Personal Higiene",
+    "singkat": "SOP 29 Personal Higiene",
+    "driveId": "1PBjbeZjpuz3PUUezSxMC8sPJM_k2LWKn"
+  },
+  {
+    "slug": "sop-30-etika-batuk-dan-bersin",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 30",
+    "judul": "Etika Batuk dan Bersin",
+    "singkat": "SOP 30 Etika Batuk dan Bersin",
+    "driveId": "1pNM4MalpO-bdBroToQwViLkJdyC5uGCv"
+  },
+  {
+    "slug": "sop-31-kontrol-air-bersih",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 31",
+    "judul": "Kontrol Air Bersih",
+    "singkat": "SOP 31 Kontrol Air Bersih",
+    "driveId": "1X_IA9Ao982OM_Si6vSTEv0KxFEvTOWkG"
+  },
+  {
+    "slug": "sop-32-kebersihan-ruangan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 32",
+    "judul": "Kebersihan Ruangan",
+    "singkat": "SOP 32 Kebersihan Ruangan",
+    "driveId": "13XNbJPYkW8VrAP8ikSTsTcppLDDNY_lS"
+  },
+  {
+    "slug": "sop-33-pengendalian-hama-dan-serangga-pest-control",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 33",
+    "judul": "Pengendalian Hama dan Serangga (Pest Control)",
+    "singkat": "SOP 33 Pengendalian Hama dan Serangga (Pest Control)",
+    "driveId": "10D6kU12QmLK-n5DFTPCKZxMVfqhKBgjj"
+  },
+  {
+    "slug": "sop-34-pembersihan-meja-produksi",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 34",
+    "judul": "Pembersihan Meja Produksi",
+    "singkat": "SOP 34 Pembersihan Meja Produksi",
+    "driveId": "1lRsi6TLYMtyRaInuBlRGXTkU4XOSyywl"
+  },
+  {
+    "slug": "sop-35-penggunaan-talenan-dan-pisau",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 35",
+    "judul": "Penggunaan Talenan dan Pisau",
+    "singkat": "SOP 35 Penggunaan Talenan dan Pisau",
+    "driveId": "1pW5mXOBWAELmz6jAqsVfp8l2j0dxT9dj"
+  },
+  {
+    "slug": "sop-36-pembersihan-dan-penyimpanan-peralatan-masak",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 36",
+    "judul": "Pembersihan dan Penyimpanan Peralatan Masak",
+    "singkat": "SOP 36 Pembersihan dan Penyimpanan Peralatan Masak",
+    "driveId": "1Pm0eX4UBr7feFTNA2yvYQN356_lDKOzj"
+  },
+  {
+    "slug": "sop-37-pembersihan-dan-penyimpanan-ompreng",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 37",
+    "judul": "Pembersihan dan Penyimpanan Ompreng",
+    "singkat": "SOP 37 Pembersihan dan Penyimpanan Ompreng",
+    "driveId": "1VsXVoIggrQKuAQXJu4QrpDIay0majzZ0"
+  },
+  {
+    "slug": "sop-38-pembersihan-berkala-chiller-dan-freezer",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 38",
+    "judul": "Pembersihan Berkala Chiller dan Freezer",
+    "singkat": "SOP 38 Pembersihan Berkala Chiller dan Freezer",
+    "driveId": "1Dqmdo7V-oMjacmhaZuzwSXI6JQ9XbnTE"
+  },
+  {
+    "slug": "sop-39-pemeriksaan-berkala-kendaraan",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 39",
+    "judul": "Pemeriksaan Berkala Kendaraan",
+    "singkat": "SOP 39 Pemeriksaan Berkala Kendaraan",
+    "driveId": "1FK6XxM_ea8Lir5FgAscd80v1Z6Q2Svij"
+  },
+  {
+    "slug": "sop-40-manajemen-sampah",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 40",
+    "judul": "Manajemen Sampah",
+    "singkat": "SOP 40 Manajemen Sampah",
+    "driveId": "1u9_oJcy6w2dTrkB2xZbFlirTMdZpukSy"
+  },
+  {
+    "slug": "sop-41-manajemen-grease-trap",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 41",
+    "judul": "Manajemen Grease Trap",
+    "singkat": "SOP 41 Manajemen Grease Trap",
+    "driveId": "1Uck4WEaywwphNeukl2xdzbuszWpUJ-fi"
+  },
+  {
+    "slug": "sop-42-manajemen-ipal",
+    "jenis": "SOP SPPG",
+    "nomor": "No. 42",
+    "judul": "Manajemen IPAL",
+    "singkat": "SOP 42 Manajemen IPAL",
+    "driveId": "1Dr3eFdrmanBiiMI7MzVdLYTMcom0ODIu"
   }
 ]

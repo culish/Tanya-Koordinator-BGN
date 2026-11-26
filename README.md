@@ -93,6 +93,7 @@ scripts/             ekstraksi PDF, pembangunan indeks, embedding
 ```
 
 > Alat bantu rujukan, bukan kanal resmi Badan Gizi Nasional. Jawaban dibuat otomatis dan dapat keliru; selalu periksa naskah aslinya.
+- Tambahan 26 November 2026: 42 SOP SPPG (Deputi Bidang Sistem dan Tata Kelola, dari perencanaan menu sampai pengelolaan limbah) dan Keputusan Kepala BGN Nomor 63539 Tahun 2026 (juknis pembiayaan SPPG aglomerasi, sebelum diubah SK 63551).
 
 ## Pencarian internet (cadangan)
 

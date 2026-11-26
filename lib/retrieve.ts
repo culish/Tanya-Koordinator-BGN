@@ -5,7 +5,7 @@
 // Hasil keduanya digabung dengan Reciprocal Rank Fusion.
 import chunksJson from "@/data/chunks.json";
 import embeddingsJson from "@/data/embeddings.json";
-import { SOURCE_BY_SLUG } from "./sources";
+import { SOURCES as SOURCES_LIST, SOURCE_BY_SLUG } from "./sources";
 
 export type Chunk = {
   id: string;
@@ -124,6 +124,12 @@ function docHint(query: string): string | null {
   if (/deputi|tauwas/.test(q)) return "se-deputi-tauwas-05-2026";
   if (/manajemen krisis|buku saku krisis/.test(q)) return "pedoman-manajemen-krisis-2026";
   if (/perbgn\s*(?:no\.?\s*)?13\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?13\b|hari pelayanan efektif/.test(q)) return "perbgn-13-2026";
+  if (/63539/.test(q)) return "sk-63539-2026";
+  {
+    const m = q.match(/\bsop\s*(?:no\.?|nomor)?\s*(\d{1,2})\b/);
+    const hit = m && SOURCES_LIST.find((s) => s.slug.startsWith(`sop-${m[1].padStart(2, "0")}-`));
+    if (hit) return hit.slug;
+  }
   if (/63527/.test(q)) return "sk-63527-2026";
   if (/63551|aglomerasi/.test(q)) return "sk-63551-2026";
   if (/perbgn\s*(?:no\.?\s*)?4\b|peraturan (?:badan gizi nasional|bgn) (?:nomor )?4\b/.test(q)) return "perbgn-4-2026";

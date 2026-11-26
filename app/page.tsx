@@ -1,7 +1,7 @@
 import Chat from "@/components/Chat";
 import { SOURCES, docUrl } from "@/lib/sources";
 
-const UPDATED = "22 November 2026";
+const UPDATED = "26 November 2026";
 
 function Emblem() {
   return (
@@ -18,19 +18,21 @@ export default function Home() {
   const grouped = SOURCES.reduce<Record<string, typeof SOURCES>>((acc, s) => {
     const key = s.belumBerlaku
       ? "Rancangan & Bahan Pembahasan"
-      : s.jenis.startsWith("Surat Edaran")
+      : s.jenis === "SOP SPPG"
+        ? "SOP SPPG"
+        : s.jenis.startsWith("Surat Edaran")
       ? "Surat Edaran"
       : s.jenis.startsWith("Peraturan")
         ? "Peraturan BGN"
         : s.jenis.startsWith("Modul")
           ? "Modul"
-          : /^(juknis|pedoman)/.test(s.slug) || s.slug === "sk-63551-2026"
+          : /^(juknis|pedoman)/.test(s.slug) || /^sk-635(39|51)-2026$/.test(s.slug)
             ? "Petunjuk Teknis & Pedoman"
             : "Keputusan & Lainnya";
     (acc[key] ??= []).push(s);
     return acc;
   }, {});
-  const ORDER = ["Peraturan BGN", "Petunjuk Teknis & Pedoman", "Keputusan & Lainnya", "Surat Edaran", "Modul", "Rancangan & Bahan Pembahasan"];
+  const ORDER = ["Peraturan BGN", "Petunjuk Teknis & Pedoman", "Keputusan & Lainnya", "Surat Edaran", "SOP SPPG", "Modul", "Rancangan & Bahan Pembahasan"];
   const groups = ORDER.filter((g) => grouped[g]).map((g) => [g, grouped[g]] as const);
 
   return (
@@ -88,7 +90,9 @@ export default function Home() {
                     <li key={s.slug}>
                       <a href={docUrl(s)} target="_blank" rel="noopener noreferrer">
                         <span className="doc-no">
-                          {s.belumBerlaku
+                          {s.jenis === "SOP SPPG"
+                            ? `SOP ${s.nomor}`
+                            : s.belumBerlaku
                             ? `${s.jenis}${s.nomor.startsWith("tgl.") ? ` ${s.nomor.replace("tgl. ", "")}` : ""}`
                             : s.nomor.startsWith("Tahun")
                             ? `${s.jenis} ${s.nomor.replace("Tahun ", "")}`
@@ -100,13 +104,17 @@ export default function Home() {
                   ))}
                 </ol>
               );
-              return group === "Rancangan & Bahan Pembahasan" ? (
+              const FOLDED: Record<string, string> = {
+                "SOP SPPG": "SOP Deputi Sistem dan Tata Kelola untuk operasional SPPG, dari perencanaan menu sampai pengelolaan limbah.",
+                "Rancangan & Bahan Pembahasan": "Rancangan, notulensi, dan kajian. Bukan aturan yang berlaku.",
+              };
+              return FOLDED[group] ? (
                 <details key={group} className="doc-group doc-drafts">
                   <summary>
                     <h3>
                       {group} ({list.length})
                     </h3>
-                    <span className="drafts-note">Rancangan, notulensi, dan kajian. Bukan aturan yang berlaku.</span>
+                    <span className="drafts-note">{FOLDED[group]}</span>
                   </summary>
                   {items}
                 </details>
